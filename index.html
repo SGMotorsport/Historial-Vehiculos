@@ -186,19 +186,45 @@
 
         historial.forEach((item, index) => {
           const card = document.createElement('div');
-          card.className = "bg-[#111827] p-4 rounded-xl border border-gray-800 relative pl-6 border-l-2 border-l-red-500 space-y-2 text-xs";
+          card.className = "bg-[#111827] p-4 rounded-xl border border-gray-800 relative pl-6 border-l-2 border-l-red-500 space-y-3 text-xs";
+          
+          let adicionalesHTML = '';
+          if (item.adicionales && item.adicionales.length > 0) {
+            adicionalesHTML = `
+              <div class="pt-2 border-t border-gray-800/80 space-y-2">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Servicios Adicionales</p>
+                ${item.adicionales.map(adj => `
+                  <p class="text-gray-300 text-[11px] leading-relaxed">
+                    <span class="font-bold text-white">${adj.titulo}</span> <span class="text-emerald-400 font-bold">✓</span> — <span class="text-gray-400">${adj.descripcion}</span>
+                  </p>
+                `).join('')}
+              </div>
+            `;
+          }
+
+          let proximoHTML = '';
+          if (item.proximoKm || item.proximaFecha) {
+            proximoHTML = `
+              <div class="pt-2 text-[11px] text-red-400 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrow-right text-[10px]"></i> Próximo: ${item.proximoKm || ''} ${item.proximaFecha ? `· ${item.proximaFecha}` : ''}
+              </div>
+            `;
+          }
+
           card.innerHTML = `
             <div class="absolute -left-[5px] top-4 h-2 w-2 rounded-full bg-red-500"></div>
             <div class="flex justify-between items-center">
               <span class="bg-red-950/60 text-red-400 text-[11px] font-semibold px-2 py-0.5 rounded border border-red-800/40">${index === 0 ? 'Último Service' : 'Service'}</span>
               <span class="text-gray-400">${item.fecha}</span>
             </div>
-            ${item.detalle ? `<p class="text-gray-300 pt-1">${item.detalle}</p>` : ''}
+            ${item.detalle ? `<p class="text-gray-300 text-[11px] leading-relaxed">${item.detalle}</p>` : ''}
             <div class="pt-2 border-t border-gray-800/60 space-y-1 text-gray-300">
-              <p class="flex items-center gap-1.5"><i class="fa-solid fa-gear text-amber-500 text-[10px]"></i> <span class="text-gray-400">Aceite:</span> ${item.aceite}</p>
+              <p class="flex items-center gap-1.5"><i class="fa-solid fa-oil-can text-amber-500 text-[10px]"></i> <span class="text-gray-400">Aceite:</span> ${item.aceite}</p>
               <p class="flex items-center gap-1.5"><i class="fa-solid fa-filter text-cyan-500 text-[10px]"></i> <span class="text-gray-400">Filtros:</span> ${item.filtros}</p>
               <p class="flex items-center gap-1.5"><i class="fa-solid fa-gauge-high text-gray-400 text-[10px]"></i> <span class="text-gray-400">Km service:</span> ${item.km.toLocaleString('es-ES')} km</p>
             </div>
+            ${adicionalesHTML}
+            ${proximoHTML}
           `;
           listaHistorial.appendChild(card);
         });
