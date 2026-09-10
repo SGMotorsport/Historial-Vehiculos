@@ -1,4 +1,14 @@
 {
+  "taller": {
+    "nombre": "SG Motorsport",
+    "slogan": "Especialistas en Mantenimiento Preventivo",
+    "logo": "https://cdn-icons-png.flaticon.com/512/3202/3202926.png",
+    "direccion": "Tu Dirección Completa Aquí",
+    "horario": "Lun a Vie: 08:00 - 18:00 hs",
+    "telefono": "+34600000000",
+    "whatsapp": "34600000000",
+    "email": "contacto@sgmotorsport.com"
+  },
   "vehiculos": {
     "gmq123": {
       "matricula": "GMQ 123",
@@ -6,8 +16,7 @@
       "propietario": "Carlos Martínez",
       "kmActual": 201000,
       "estado": "Vencido",
-      "foto": "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=800",
-      "telefono": "+34600000000"
+      "foto": "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=800"
     },
     "seat-ibiza": {
       "matricula": "1234 ABC",
@@ -15,8 +24,7 @@
       "propietario": "Laura Gómez",
       "kmActual": 45200,
       "estado": "Al día",
-      "foto": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",
-      "telefono": "+34611111111"
+      "foto": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"
     }
   },
   "mantenimientos": {
