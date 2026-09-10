@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Historial del Vehículo - SG Motorsport</title>
+  <title>Historial de Mantenimiento - SG Motorsport</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-100 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-[#0b0f19] text-gray-200 font-sans antialiased min-h-screen flex flex-col justify-between">
 
   <!-- Header -->
-  <header class="bg-slate-900 text-white shadow-lg border-b border-slate-800">
-    <div class="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
+  <header class="bg-[#111827] border-b border-gray-800">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <img id="taller-logo" src="" alt="Logo Taller" class="h-12 w-12 object-cover rounded-xl border border-slate-700 shadow-sm hidden">
+        <img id="taller-logo" src="" alt="Logo" class="h-9 w-9 object-cover rounded-md hidden">
         <div>
-          <h1 id="taller-nombre" class="text-lg font-black tracking-wider text-white">SG Motorsport</h1>
-          <p id="taller-slogan" class="text-xs text-slate-400 font-medium">Reprogramación y Técnica</p>
+          <h1 id="taller-nombre" class="text-sm font-bold text-white tracking-wide">SG Motorsport</h1>
+          <p id="taller-slogan" class="text-[11px] text-gray-400">Historial de Mantenimiento</p>
         </div>
       </div>
-      <span id="vehiculo-estado" class="px-3 py-1 rounded-full text-xs font-bold tracking-wide shadow-sm"></span>
+      <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 flex items-center gap-1">
+        <i class="fa-solid fa-shield-halved text-[10px]"></i> Oficial
+      </span>
     </div>
   </header>
 
@@ -28,54 +30,67 @@
 
     <!-- Loading State -->
     <div id="cargando" class="text-center py-16 space-y-3">
-      <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-slate-300 border-t-slate-900"></div>
-      <p class="text-sm font-semibold text-slate-500">Cargando expediente del vehículo...</p>
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-2 border-red-600 border-t-transparent"></div>
+      <p class="text-xs font-medium text-gray-400">Cargando datos del vehículo...</p>
     </div>
 
     <!-- Error State -->
-    <div id="error" class="hidden bg-red-50 border-2 border-red-200 text-red-700 p-5 rounded-2xl text-center space-y-2">
-      <i class="fa-solid fa-triangle-exclamation text-3xl text-red-500"></i>
-      <h3 class="font-bold text-base">Vehículo no encontrado</h3>
-      <p class="text-xs text-red-600">No se ha podido localizar la ficha técnica. Verifica el código QR o contacta con el taller.</p>
+    <div id="error" class="hidden bg-red-950/40 border border-red-800/60 text-red-300 p-4 rounded-xl text-center space-y-1">
+      <p class="font-bold text-sm">Vehículo no encontrado</p>
+      <p class="text-xs text-red-400">Verifica el código QR o contacta con el taller.</p>
     </div>
 
     <!-- Vehicle Content -->
     <div id="contenido-vehiculo" class="hidden space-y-5">
 
       <!-- Vehicle Card -->
-      <div class="bg-white rounded-2xl shadow-md border border-slate-200/80 overflow-hidden">
-        <div class="relative h-56 bg-slate-800">
+      <div class="bg-[#111827] rounded-xl border border-gray-800 overflow-hidden shadow-2xl">
+        <div class="relative h-48 bg-gray-900">
           <img id="vehiculo-foto" src="" alt="Foto del vehículo" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent"></div>
           <div class="absolute bottom-3 left-4 right-4">
-            <span id="vehiculo-matricula" class="inline-block bg-yellow-400 text-slate-950 px-2.5 py-0.5 rounded font-black text-xs tracking-wider shadow-sm mb-1 border border-yellow-500"></span>
-            <h2 id="vehiculo-modelo" class="text-xl font-black text-white leading-tight"></h2>
+            <h2 id="vehiculo-matricula" class="text-2xl font-black text-white tracking-wider"></h2>
+            <p id="vehiculo-modelo" class="text-xs font-semibold text-gray-400 uppercase tracking-wide"></p>
           </div>
         </div>
 
-        <div class="p-4 grid grid-cols-2 gap-3 bg-slate-50 border-t border-slate-100 text-xs">
-          <div class="bg-white p-3 rounded-xl border border-slate-200/60 shadow-sm">
-            <span class="text-slate-400 font-semibold block uppercase tracking-wider text-[10px]">Propietario</span>
-            <span id="vehiculo-propietario" class="font-bold text-slate-700 text-sm mt-0.5 block truncate"></span>
+        <div class="p-4 space-y-3 text-xs">
+          <div class="flex justify-between items-center pb-2 border-b border-gray-800/80">
+            <span class="text-gray-400">Propietario/a:</span>
+            <span id="vehiculo-propietario" class="font-semibold text-gray-200"></span>
           </div>
-          <div class="bg-white p-3 rounded-xl border border-slate-200/60 shadow-sm">
-            <span class="text-slate-400 font-semibold block uppercase tracking-wider text-[10px]">Kilometraje</span>
-            <span id="vehiculo-km" class="font-bold text-slate-700 text-sm mt-0.5 block"></span>
+          <div class="flex justify-between items-center pb-2 border-b border-gray-800/80">
+            <span class="text-gray-400">Km actual</span>
+            <span id="vehiculo-km" class="font-bold text-white text-sm"></span>
+          </div>
+          <div class="flex justify-between items-center pt-0.5">
+            <span class="text-gray-400">Estado</span>
+            <span id="vehiculo-estado" class="px-2.5 py-0.5 rounded-full text-xs font-semibold"></span>
           </div>
         </div>
       </div>
 
-      <!-- Maintenance History -->
+      <!-- Maintenance History Section -->
       <div class="space-y-3">
-        <div class="flex justify-between items-center px-1">
-          <h3 class="font-black text-slate-800 text-sm uppercase tracking-wider flex items-center gap-2">
-            <i class="fa-solid fa-wrench text-slate-500"></i> Historial Mantenimiento
-          </h3>
-          <span id="total-registros" class="text-xs font-bold text-slate-400 bg-slate-200 px-2 py-0.5 rounded-full"></span>
-        </div>
-
+        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider px-1">Historial de Services</h3>
         <div id="lista-mantenimientos" class="space-y-3">
-          <!-- Dinámico -->
+          <!-- Timeline Items -->
+        </div>
+      </div>
+
+      <!-- Workshop Info Card -->
+      <div class="bg-[#111827] rounded-xl border border-gray-800 p-4 space-y-3 text-xs">
+        <div class="flex items-center space-x-3 pb-3 border-b border-gray-800">
+          <img id="taller-card-logo" src="" alt="Logo Taller" class="h-8 w-8 object-cover rounded-md hidden">
+          <div>
+            <h4 id="taller-card-nombre" class="font-bold text-white text-sm">SG Motorsport</h4>
+            <p id="taller-card-slogan" class="text-[11px] text-gray-400">Reprogramación y Técnica</p>
+          </div>
+        </div>
+        <div class="space-y-2 text-gray-300">
+          <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-red-500 w-4 text-center"></i> <span id="taller-direccion"></span></p>
+          <p class="flex items-center gap-2"><i class="fa-solid fa-clock text-amber-500 w-4 text-center"></i> <span id="taller-horario"></span></p>
+          <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-blue-400 w-4 text-center"></i> <span id="taller-email"></span></p>
         </div>
       </div>
 
@@ -83,26 +98,15 @@
 
   </main>
 
-  <!-- Footer & Contact Action Buttons -->
-  <footer class="bg-white border-t border-slate-200 shadow-lg mt-6">
-    <div class="max-w-md mx-auto p-4 space-y-4">
-      
-      <!-- Prominent Call / WhatsApp Buttons -->
-      <div class="grid grid-cols-2 gap-3">
-        <a id="btn-llamar" href="" class="flex items-center justify-center gap-2 bg-slate-900 hover:bg-black text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md transition-all active:scale-[0.98]">
-          <i class="fa-solid fa-phone text-slate-300"></i> Llamar Taller
-        </a>
-        <a id="btn-whatsapp" href="" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md transition-all active:scale-[0.98]">
-          <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp
-        </a>
-      </div>
-
-      <!-- Workshop Contact Information -->
-      <div class="text-center text-xs text-slate-500 space-y-1 pt-1 border-t border-slate-100">
-        <p id="taller-direccion" class="font-semibold text-slate-700"></p>
-        <p id="taller-horario" class="text-slate-400"></p>
-      </div>
-
+  <!-- Footer Action Buttons -->
+  <footer class="max-w-md mx-auto w-full p-4 pt-0">
+    <div class="grid grid-cols-2 gap-3">
+      <a id="btn-whatsapp" href="" target="_blank" class="flex items-center justify-center gap-2 bg-[#00a884] hover:bg-[#008f70] text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all">
+        <i class="fa-brands fa-whatsapp text-sm"></i> Enviar mensaje
+      </a>
+      <a id="btn-llamar" href="" class="flex items-center justify-center gap-2 bg-[#ef4444] hover:bg-[#dc2626] text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all">
+        <i class="fa-solid fa-phone text-xs"></i> Llamar
+      </a>
     </div>
   </footer>
 
@@ -134,25 +138,31 @@
         // Taller Data
         document.getElementById('taller-nombre').textContent = taller.nombre;
         document.getElementById('taller-slogan').textContent = taller.slogan;
+        document.getElementById('taller-card-nombre').textContent = taller.nombre;
+        document.getElementById('taller-card-slogan').textContent = taller.slogan;
         document.getElementById('taller-direccion').textContent = taller.direccion;
         document.getElementById('taller-horario').textContent = taller.horario;
+        document.getElementById('taller-email').textContent = taller.email;
         document.getElementById('btn-llamar').href = `tel:${taller.telefono}`;
         document.getElementById('btn-whatsapp').href = `https://wa.me/${taller.whatsapp}`;
 
         if (taller.logo) {
           const logoImg = document.getElementById('taller-logo');
+          const logoCard = document.getElementById('taller-card-logo');
           logoImg.src = taller.logo;
+          logoCard.src = taller.logo;
           logoImg.classList.remove('hidden');
+          logoCard.classList.remove('hidden');
         }
 
         // Vehicle Data
         document.getElementById('vehiculo-modelo').textContent = vehiculo.modelo;
         document.getElementById('vehiculo-matricula').textContent = vehiculo.matricula;
         document.getElementById('vehiculo-propietario').textContent = vehiculo.propietario;
-        document.getElementById('vehiculo-km').textContent = `${vehiculo.kmActual.toLocaleString()} km`;
+        document.getElementById('vehiculo-km').textContent = `${vehiculo.kmActual.toLocaleString('es-ES')}`;
         document.getElementById('vehiculo-foto').src = vehiculo.foto;
 
-        // AUTOMATIC STATUS LOGIC (365 days interval)
+        // AUTOMATIC STATUS LOGIC (365 days)
         const estadoElem = document.getElementById('vehiculo-estado');
         if (historial.length > 0 && historial[0].fecha) {
           const fechaUltimo = new Date(historial[0].fecha);
@@ -160,41 +170,40 @@
           const diasDiferencia = Math.floor((fechaActual - fechaUltimo) / (1000 * 60 * 60 * 24));
 
           if (diasDiferencia >= 365) {
-            estadoElem.textContent = "Vencido";
-            estadoElem.className = "px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700 border border-red-300 shadow-sm";
+            estadoElem.textContent = "✕ Vencido";
+            estadoElem.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-950/80 text-red-400 border border-red-800/60";
           } else {
-            estadoElem.textContent = "Al día";
-            estadoElem.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-300 shadow-sm";
+            estadoElem.textContent = "✓ Al día";
+            estadoElem.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-800/60";
           }
         } else {
           estadoElem.textContent = "Sin datos";
-          estadoElem.className = "px-3 py-1 rounded-full text-xs font-bold bg-slate-200 text-slate-700";
+          estadoElem.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-800 text-gray-300";
         }
 
-        // History Render
+        // History Render (Timeline style)
         const listaHistorial = document.getElementById('lista-mantenimientos');
-        document.getElementById('total-registros').textContent = `${historial.length}`;
 
-        historial.forEach(item => {
+        historial.forEach((item, index) => {
           const card = document.createElement('div');
-          card.className = "bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm space-y-2.5";
+          card.className = "bg-[#111827] p-4 rounded-xl border border-gray-800 relative pl-6 border-l-2 border-l-red-500 space-y-2 text-xs";
           card.innerHTML = `
-            <div class="flex justify-between items-center text-xs pb-2 border-b border-slate-100">
-              <span class="font-bold text-slate-800 flex items-center gap-1.5">
-                <i class="fa-regular fa-calendar-check text-slate-400"></i> ${item.fecha}
-              </span>
-              <span class="bg-slate-100 px-2.5 py-0.5 rounded-full text-slate-600 font-extrabold text-[11px]">${item.km.toLocaleString()} km</span>
+            <div class="absolute -left-[5px] top-4 h-2 w-2 rounded-full bg-red-500"></div>
+            <div class="flex justify-between items-center">
+              <span class="bg-red-950/60 text-red-400 text-[11px] font-semibold px-2 py-0.5 rounded border border-red-800/40">${index === 0 ? 'Último Service' : 'Service'}</span>
+              <span class="text-gray-400">${item.fecha}</span>
             </div>
-            <div class="text-xs space-y-1.5 text-slate-600">
-              <p class="flex justify-between"><span class="font-semibold text-slate-400">Aceite:</span> <span class="font-bold text-slate-800">${item.aceite}</span></p>
-              <p class="flex justify-between"><span class="font-semibold text-slate-400">Filtros:</span> <span class="font-bold text-slate-800">${item.filtros}</span></p>
-              ${item.detalle ? `<p class="text-slate-500 pt-2 border-t border-slate-100 mt-2 text-[11px] leading-relaxed">${item.detalle}</p>` : ''}
+            ${item.detalle ? `<p class="text-gray-300 pt-1">${item.detalle}</p>` : ''}
+            <div class="pt-2 border-t border-gray-800/60 space-y-1 text-gray-300">
+              <p class="flex items-center gap-1.5"><i class="fa-solid fa-gear text-amber-500 text-[10px]"></i> <span class="text-gray-400">Aceite:</span> ${item.aceite}</p>
+              <p class="flex items-center gap-1.5"><i class="fa-solid fa-filter text-cyan-500 text-[10px]"></i> <span class="text-gray-400">Filtros:</span> ${item.filtros}</p>
+              <p class="flex items-center gap-1.5"><i class="fa-solid fa-gauge-high text-gray-400 text-[10px]"></i> <span class="text-gray-400">Km service:</span> ${item.km.toLocaleString('es-ES')} km</p>
             </div>
           `;
           listaHistorial.appendChild(card);
         });
 
-        // Display Content
+        // Display
         document.getElementById('cargando').classList.add('hidden');
         document.getElementById('contenido-vehiculo').classList.remove('hidden');
 
