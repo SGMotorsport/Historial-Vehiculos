@@ -1,13 +1,13 @@
 {
   "taller": {
     "nombre": "SG Motorsport",
-    "slogan": "Especialistas en Mantenimiento Preventivo",
-    "logo": "https://cdn-icons-png.flaticon.com/512/3202/3202926.png",
-    "direccion": "Tu Dirección Completa Aquí",
-    "horario": "Lun a Vie: 08:00 - 18:00 hs",
-    "telefono": "+34600000000",
-    "whatsapp": "34600000000",
-    "email": "contacto@sgmotorsport.com"
+    "slogan": "Reprogramación y Técnica",
+    "logo": "logo.jpeg",
+    "direccion": "C/ Isla Hermosa 38 Bajo, 29510 Álora Málaga",
+    "horario": "Lunes a Viernes (Cita previa)",
+    "telefono": "+34616093552",
+    "whatsapp": "34616093552",
+    "email": "sg.motorsport@outlook.com"
   },
   "vehiculos": {
     "gmq123": {
