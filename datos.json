@@ -25,7 +25,19 @@
         "km": 376000,
         "aceite": "Motul 300V 10w60",
         "filtros": "Aceite / Aire / Combustible / Antipolen de carbón activo",
-        "detalle": "Mantenimiento completo y revisión general."
+        "detalle": "Mantenimiento completo y revisión general.",
+        "proximoKm": "376.000 km",
+        "proximaFecha": "2027-08-20",
+        "adicionales": [
+          {
+            "titulo": "Control de frenos",
+            "descripcion": "Se cambiaron pastillas Ferodo DS 2500, discos brembo Xtra y líquido de frenos Motul RBF660."
+          },
+          {
+            "titulo": "Diagnósis Electrónica",
+            "descripcion": "No se han detectado códigos de fallo activos en la ECU."
+          }
+        ]
       }
     ]
   }
