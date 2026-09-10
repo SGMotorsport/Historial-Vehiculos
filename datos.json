@@ -10,40 +10,22 @@
     "email": "sg.motorsport@outlook.com"
   },
   "vehiculos": {
-    "gmq123": {
+    "gr1568ak": {
       "matricula": "GR1568AK",
       "modelo": "BMW 323I E36",
       "propietario": "Salvador García",
       "kmActual": 376000,
-      "estado": "Vencido",
       "foto": "GR1568AK.jpeg"
-    },
-    "seat-ibiza": {
-      "matricula": "1234 ABC",
-      "modelo": "SEAT IBIZA 1.0 TSI 2021",
-      "propietario": "Laura Gómez",
-      "kmActual": 45200,
-      "estado": "Al día",
-      "foto": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"
     }
   },
   "mantenimientos": {
-    "gmq123": [
+    "gr1568ak": [
       {
         "fecha": "2026-08-20",
-        "km": 201000,
-        "aceite": "Castrol 15w40",
+        "km": 376000,
+        "aceite": "Motul 300V 15w50",
         "filtros": "Aceite / Aire",
-        "detalle": "Se realizó cambio de aceite y filtros según mantenimiento programado."
-      }
-    ],
-    "seat-ibiza": [
-      {
-        "fecha": "2026-05-10",
-        "km": 45200,
-        "aceite": "Repsol 5W30",
-        "filtros": "Aceite / Aire / Polen",
-        "detalle": "Service oficial 45.000km. Cambio de pastillas delanteras."
+        "detalle": "Mantenimiento completo y revisión general."
       }
     ]
   }
